@@ -1,0 +1,49 @@
+body{
+  margin: 0;
+  overflow: hidden;
+}
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background-color: rgb(29, 3, 70);
+  padding: 20px;
+  border-right: 1px solid #eee;
+
+  /* 🔥 Enable scroll */
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  margin: 0;
+  border-radius: 5px;
+  position: sticky;
+}
+
+/* Section Heading */
+.sidebar-heading {
+  font-size: 13px;
+  color: #dbbfbf;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+/* Menu Item */
+.menu-item {
+  padding: 10px 12px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  color: white;
+}
+
+/* Hover */
+.menu-item:hover {
+  background-color: #f3f4f6;
+  color: black;
+}
+
+/* Active */
+.menu-item.active {
+  background-color: white;
+  color: black;
+}

@@ -1,0 +1,124 @@
+body{
+    overflow-y: auto;
+    margin: 0;
+}
+.dashboard {
+  padding: 20px;
+  background: #f5f7fb;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+}
+
+/* Profile */
+.profile-card {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(135deg,#eef3ff,#f5f0ff,#ecfdf5);
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.profile-left {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  position: relative;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  background: green;
+  border-radius: 50%;
+}
+
+.tags {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.profile-right {
+  display: flex;
+  gap: 20px;
+}
+
+.profile-right div span {
+  display: block;
+  font-size: 11px;
+  color: gray;
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat-card .icon {
+  font-size: 20px;
+}
+
+.stat-card h3 {
+  margin: 8px 0;
+}
+
+/* Grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  margin:25px;
+  font-size: 12px;
+  color: gray;
+  border-bottom: 1px solid #ddd;
+}
+
+.table td {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Notices */
+.notices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notice {
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.muted {
+  color: gray;
+  font-size: 12px;
+}
