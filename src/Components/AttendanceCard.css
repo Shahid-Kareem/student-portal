@@ -1,0 +1,71 @@
+:root {
+  --success: #22c55e; /* green */
+  --danger: #ef4444;  /* red */
+  --warn: #f59e0b;    /* orange */
+  --accent3:#10b981;
+  --faint:#cbd5e1;
+  --muted:#64748b;
+  --accent:#4f7cf7;
+
+
+}
+.attendance-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: var(--faint);
+  stroke-width: 9;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: var(--accent3);
+  stroke-width: 9;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.percent-text {
+  fill: var(--accent3);
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.term-text {
+  fill: var(--muted);
+  font-size: 10px;
+}
+
+.attendance-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stat-box {
+  background: whitesmoke;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.stat-number.success { color: var(--success); }
+.stat-number.danger { color: var(--danger); }
+.stat-number.warn { color: var(--warn); }
+
+.stat-label {
+  font-size: 0.68rem;
+  color: var(--muted);
+}

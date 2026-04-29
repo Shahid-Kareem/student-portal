@@ -1,0 +1,60 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 290px;
+  right: 0;
+  height: 56px;
+  background: rgb(29, 3, 70);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 16px;
+  z-index: 10;
+  color: white;
+}
+
+/* LEFT SIDE */
+.topbar-title {
+  font-weight: 700;
+}
+
+.topbar-date {
+  font-size: 0.72rem;
+  color: white;
+  margin-top: 5px;
+}
+
+/* RIGHT SIDE */
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-semester {
+  padding: 5px 12px;
+}
+
+/* ICONS */
+.topbar-icon {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Notification dot */
+.topbar-notification-dot {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 6px;
+  height: 6px;
+  background: red;
+  border-radius: 50%;
+}

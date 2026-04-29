@@ -10,7 +10,7 @@ export const attendance = {
     {name:"Chemistry",present:16,absent:3,late:1},
     {name:"Biology",present:19,absent:0,late:1},
     {name:"English",present:18,absent:1,late:0},
-    {name:"Computer Sci.",present:19,absent:0,late:0},
+    {name:"Computer Sci.",present:10,absent:9,late:0},
     {name:"Urdu",present:18,absent:1,late:0},
   ],
 };

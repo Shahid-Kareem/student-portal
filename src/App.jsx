@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./Components/Sidebar";
 import Dashboard from "./Pages/Dashboard";
 import Profile from "./Pages/Profile";
-import Shedule from "./Pages/Shedule";
+import Schedule from "./Pages/Schedule";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile/>} />
-            <Route path="/shedule" element={<Shedule/>} />
+            <Route path="/shedule" element={<Schedule/>} />
           </Routes>
         </div>
       </div>
