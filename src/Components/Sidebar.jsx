@@ -1,12 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faBook, faFileAlt, faClipboard, faChartBar, faCalendarDays, faClipboardList, faFilePen, faChartLine, faSchool, faMoneyBill1Wave, faCreditCard, faRunning, faBell, faBullhorn, faHeadset, faChalkboardUser, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faBook, faFileAlt, faClipboard, faChartBar, faCalendarDays, faClipboardList, faFilePen, faChartLine, faSchool, faMoneyBill1Wave, faCreditCard, faRunning, faBell, faBullhorn, faHeadset, faChalkboardUser, faCog, faCloudSun } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 import { faTableColumns } from "@fortawesome/free-solid-svg-icons/faTableColumns";
 import { faHouse } from "@fortawesome/free-solid-svg-icons/faHouse";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons/faBookOpen";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons/faGraduationCap";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons/faUserCheck";
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ function Sidebar() {
         <FontAwesomeIcon icon={faUserCheck}/> Attendance
       </div>
       <div
-        className={`menu-item ${isActive("/Fee & payments") ? "active" : ""}`}
+        className={`menu-item ${isActive("/Fee&payments") ? "active" : ""}`}
         onClick={() => navigate("/Fee&payments")}
       >
         <FontAwesomeIcon icon={faCreditCard}/> Fee & Payments
@@ -98,12 +99,7 @@ function Sidebar() {
       >
         <FontAwesomeIcon icon={faRunning}/> Activities
       </div>
-      <div
-        className={`menu-item ${isActive("/attendance") ? "active" : ""}`}
-        onClick={() => navigate("/attendance")}
-      >
-        <FontAwesomeIcon icon={faUserCheck}/> Attendance
-      </div>
+
       <div
         className={`menu-item ${isActive("/notices") ? "active" : ""}`}
         onClick={() => navigate("/notices")}
@@ -126,8 +122,13 @@ function Sidebar() {
         <FontAwesomeIcon icon={faCog}/> Settings
       </div>
 
-
-
+       <h4 className="sidebar-heading"><FontAwesomeIcon icon={faCloudSun}/> Weather</h4>
+       <div
+        className={`menu-item ${isActive("/weather") ? "active" : ""}`}
+        onClick={() => navigate("/weather")}
+      >
+        <FontAwesomeIcon icon={faCloudSun}/> Weather
+      </div>
 
 
 

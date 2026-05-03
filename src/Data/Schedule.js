@@ -7,7 +7,7 @@ export const schedule = {
     {time:"11:15",subject:"Islamic Studies",room:"Rm 110",teacher:"Ms. Fatima",color:"var(--accent2)"},
     {time:"12:15",subject:"Zuhr & Lunch",room:"Prayer Hall",teacher:"",color:"var(--faint)"},
     {time:"1:00",subject:"Pakistan Studies",room:"Rm 106",teacher:"Mr. Imran",color:"var(--accent5)"},
-    {time:"2:00",subject:"Library Period",room:"Library",teacher:"",color:"var(--faint)"},
+    {time:"2:00",subject:"Library Period",room:"Library",teacher:"",color:"var(--fain)"},
   ],
   Tuesday:[
     {time:"7:45",subject:"Biology",room:"Lab 1",teacher:"Ms. Zara",color:"var(--accent3)"},
@@ -46,6 +46,6 @@ export const schedule = {
     {time:"10:15",subject:"Chemistry",room:"Lab 2",teacher:"Mr. Aslam",color:"var(--accent2)"},
     {time:"11:15",subject:"Pakistan Studies",room:"Rm 106",teacher:"Mr. Imran",color:"var(--accent5)"},
     {time:"11:45",subject:"Jumu'ah Prayer",room:"Prayer Hall",teacher:"",color:"var(--faint)"},
-    {time:"1:00",subject:"Assembly & Closing",room:"Hall",teacher:"",color:"var(--faint)"},
+    {time:"1:00",subject:"Assembly & Closing",room:"Hall",teacher:"",color:"var(--fain)"},
   ],
 };

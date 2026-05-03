@@ -1,0 +1,73 @@
+.notices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.notices-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* CARD */
+.notice-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.notice-card.active {
+  border-color: rgba(79,124,247,0.3);
+}
+
+/* HEADER */
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.notice-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.notice-badge {
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* DATE */
+.notice-date {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* BODY */
+.notice-body {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* INFO CARD */
+.notice-info {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding: 16px;
+}

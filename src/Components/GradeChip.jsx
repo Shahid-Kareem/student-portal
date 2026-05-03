@@ -1,32 +1,40 @@
 import React from "react";
 
-const GradeChip = ({ g }) => {
-  const styles = {
-    "grade-A": {
-      background: "rgba(16,185,129,0.12)",
-      color: "#059669",
-    },
-    "grade-B": {
-      background: "rgba(79,124,247,0.12)",
-      color: "#3b6fe0",
-    },
-    "grade-C": {
-      background: "rgba(245,158,11,0.12)",
-      color: "#d97706",
-    },
-    "grade-D": {
-      background: "rgba(239,68,68,0.12)",
-      color: "#dc2626",
-    },
+const GradeChip = ({ marks, total }) => {
+
+  // ✅ 1. Convert to percentage
+  const percentage = total
+    ? (Number(marks) / Number(total)) * 100
+    : 0;
+
+  // ✅ 2. Grade logic (based on percentage)
+  const getGrade = () => {
+    if (percentage >= 90) return "A+";
+    else if (percentage >= 80) return "A";
+    else if (percentage >= 75) return "B+";
+    else if (percentage >= 70) return "B";
+    else if (percentage >= 65) return "C+";
+    else if (percentage >= 60) return "C";
+    else if (percentage >= 50) return "D";
+    else return "F";
   };
 
-  const key = g.startsWith("A")
-    ? "grade-A"
-    : g.startsWith("B")
-    ? "grade-B"
-    : g.startsWith("C")
-    ? "grade-C"
-    : "grade-D";
+  // ✅ 3. Color mapping
+  const getColor = (grade) => {
+    switch (grade) {
+      case "A+": return "var(--accent3)";
+      case "A": return "var(--accent)";
+      case "B+": return "var(--accent2)";
+      case "B": return "var(--accent4)";
+      case "C+": return "var(--lightblue)";
+      case "C": return "var(--muted)";
+      case "D": return "var(--darkorange)";
+      default: return "var(--accent5)";
+    }
+  };
+
+  const grade = getGrade();
+  const color = getColor(grade);
 
   return (
     <span
@@ -38,10 +46,11 @@ const GradeChip = ({ g }) => {
         fontSize: "0.75rem",
         fontWeight: 700,
         fontFamily: "Plus Jakarta Sans, sans-serif",
-        ...styles[key],
+        background: `${color}22`,
+        color: color,
       }}
     >
-      {g}
+      {grade}
     </span>
   );
 };

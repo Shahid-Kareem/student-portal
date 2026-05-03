@@ -1,0 +1,126 @@
+.assign-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 50px;
+}
+
+/* STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.stat-icon {
+  font-size: 1.4rem;
+}
+
+.stat-value {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* COLORS */
+.success { color: var(--success); }
+.warn { color: var(--warn); }
+.danger { color: var(--danger); }
+.muted { color: var(--muted); }
+
+/* FILTER */
+.filter-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: var(--muted);
+  transition: 0.2s;
+}
+
+.filter-btn.active {
+  border-color: var(--accent);
+  background: rgba(79,124,247,0.1);
+  color: var(--accent);
+}
+
+/* LIST */
+.assignment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.assignment-card {
+  background: ghostwhite;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.subject-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(79,124,247,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.assignment-info {
+  flex: 1;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.priority.high { color: var(--danger); }
+.priority.medium { color: var(--warn); }
+.priority.low { color: var(--success); }
+
+.status {
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Profile.css';
 import Topbar from '../Components/Topbar'
 import {student} from '../Data/Student';
 import ProfileCard from '../Components/ProfileCard';
@@ -8,12 +9,12 @@ function Profile() {
   return (
     <>
         <Topbar 
-             page="dashboard" 
-             pageTitles={{ dashboard: "Profile" }} />
+             page="profile" 
+             pageTitles={{ profile: "Profile" }} />
           <div>
             <ProfileCard student={student} />
           </div>
-
+          <div className='info-grid'>
             <InfoCard
               title="👤 Personal Information"
               data={[
@@ -55,6 +56,7 @@ function Profile() {
              ["Top 10%", "Class Rank", "🥇"],
              ]}
             />
+          </div>
           
     </>
        

@@ -1,5 +1,5 @@
 export const teachers = [
-  {name:"Mr. Raza Ahmad",subject:"Mathematics",email:"raza@beacon.edu",phone:"+92-321-1111222",room:"204",cabin:"Block A-2",available:"Mon–Fri 3–4 PM"},
+  {name:"Mr. Raza Ahmed ",subject:"Mathematics",email:"raza@beacon.edu",phone:"+92-321-1111222",room:"204",cabin:"Block A-2",available:"Mon–Fri 3–4 PM"},
   {name:"Ms. Sana Malik",subject:"Physics",email:"sana@beacon.edu",phone:"+92-321-2222333",room:"Lab 3",cabin:"Block B-1",available:"Tue & Thu 2–3 PM"},
   {name:"Mr. Aslam Butt",subject:"Chemistry",email:"aslam@beacon.edu",phone:"+92-321-3333444",room:"Lab 2",cabin:"Block B-2",available:"Mon & Wed 2–3 PM"},
   {name:"Ms. Zara Qureshi",subject:"Biology",email:"zara@beacon.edu",phone:"+92-321-4444555",room:"Lab 1",cabin:"Block B-3",available:"Tue & Fri 2–3 PM"},

@@ -1,0 +1,125 @@
+:root{
+  --bg:#f0f4f8;--surface:#ffffff;--card:#ffffff;--card2:#f5f7fa;
+  --border:#e2e8f0;--accent:#4f7cf7;--accent2:#9333ea;
+  --accent3:#10b981;--accent4:#f59e0b;--accent5:#ef4444;
+  --text:#0f172a;--muted:#64748b;--faint:#cbd5e1;
+  --success:#10b981;--warn:#f59e0b;--danger:#ef4444;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.08),0 8px 24px rgba(0,0,0,0.05);
+  --fain:#597fab; --lightblue:#0ea5e9; --darkorange:#f97316;
+}
+.schedule-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+/* DAYS */
+.days {
+  display: flex;
+  gap: 8px;
+}
+
+.day-btn {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  transition: all 0.18s;
+  background: var(--surface);
+  color: var(--muted);
+  box-shadow: var(--shadow);
+}
+
+.day-btn.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(79,124,247,0.3);
+}
+
+/* GRID */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* LEFT LIST */
+.class-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.time {
+  font-size: 0.72rem;
+  color: var(--muted);
+  min-width: 58px;
+  font-weight: 600;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+.subject {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.meta {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+
+/* RIGHT */
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.summary-row {
+  margin-bottom: 10px;
+}
+
+.summary-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+
+.room-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+
+.room {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--muted);
+}

@@ -1,0 +1,116 @@
+.grades-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+/* STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+}
+
+.stat-value {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* GRID */
+.grades-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+/* SUBJECT */
+.subject-row {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.subject-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.subject-info {
+  flex: 1;
+}
+
+.subject-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.subject-teacher {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.subject-marks {
+  font-weight: 700;
+}
+
+.subject-percentage {
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* RIGHT */
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dist-row {
+  margin-bottom: 12px;
+}
+
+.dist-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.term-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.term-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+.term-score {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--muted);
+}

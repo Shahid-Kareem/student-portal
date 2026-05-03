@@ -1,0 +1,132 @@
+.teachers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 60px;
+}
+
+/* Grid */
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Card */
+.teacher-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  transition: 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.teacher-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Header */
+.teacher-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(79, 124, 247, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.teacher-header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.subject {
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+/* Info */
+.info p {
+  margin: 4px 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Button */
+.message-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(79, 124, 247, 0.1);
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 16px;
+  width: 350px;
+}
+
+.modal-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.modal-box textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn-send {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}

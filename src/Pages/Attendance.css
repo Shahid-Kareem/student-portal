@@ -1,0 +1,110 @@
+.att-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.att-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.att-card {
+  background: ghostwhite;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.att-icon { font-size: 1.4rem; }
+
+.att-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.att-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.att-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.att-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.att-percent {
+  font-weight: 600;
+}
+
+.att-subject-row {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.att-stats {
+  display: flex;
+  gap: 10px;
+  font-size: 0.72rem;
+}
+
+.att-p { color: var(--success); }
+.att-a { color: var(--danger); }
+.att-l { color: var(--warn); }
+
+.att-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.att-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.att-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.att-status {
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.att-absent {
+  background: rgba(239,68,68,0.1);
+  color: var(--danger);
+}
+
+.att-late {
+  background: rgba(245,158,11,0.1);
+  color: var(--warn);
+}
+
+.att-other {
+  background: rgba(79,124,247,0.08);
+  color: var(--accent);
+}
+
+.att-no-data {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+}

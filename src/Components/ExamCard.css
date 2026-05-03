@@ -1,0 +1,74 @@
+.exam-card {
+  background: ghostwhite;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.exam-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.date-box {
+  min-width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-day {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.date-mon {
+  font-size: 0.6rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.exam-info {
+  flex: 1;
+}
+
+.exam-subject {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.exam-type {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.exam-score {
+  background: rgba(16,185,129,0.1);
+  color: var(--success);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.exam-details {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+}
+
+.exam-details div {
+  background: var(--card2);
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  gap: 5px;
+}

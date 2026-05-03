@@ -85,7 +85,7 @@ const Dashboard = ({ setPage }) => {
                   <td>{s.name}</td>
                   <td className="muted">{s.teacher}</td>
                   <td>{s.marks}/{s.total}</td>
-                  <td><GradeChip g={s.grade} /></td>
+                  <td> <GradeChip marks={s.marks} total={s.total} /></td>
                   <td>
                       <ProgressBar
                         pct={(s.marks / s.total) * 100}

@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import Topbar from "../Components/Topbar";
+import ScheduleCard from "../Components/ScheduleCard";
 
 function Schedule() {
   return (
-    <div>Schedule</div>
-  )
+    <>
+      <Topbar 
+        page="schedule" 
+        pageTitles={{ schedule: "Schedule" }} 
+      />
+
+      <ScheduleCard />
+    </>
+  );
 }
 
-export default Schedule
+export default Schedule;
