@@ -6,8 +6,11 @@ import Schedule from "./Pages/Schedule";
 import SubjectsGrades from "./Pages/SubjectsGrades";
 import Assignments from "./Pages/Assignments";
 import Exams from "./Pages/Exams";
+import Report from "./Pages/Report";
 import Attendance from "./Pages/Attendance";
 import Fees from "./Pages/Fees";
+import Library from "./Pages/Library";
+import Activities from "./Pages/Activities";
 import Notices from "./Pages/Notices";
 import Teachers from "./Pages/Teachers";
 import Weather from "./Pages/Weather";
@@ -28,8 +31,11 @@ function App() {
             <Route path='/subjects' element={<SubjectsGrades/>}/>
             <Route path="/assignments" element={<Assignments/>} />
             <Route path='/exams' element={<Exams/>}/>
+            <Route path='/report' element={<Report/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
             <Route path='/Fee&payments' element={<Fees/>}/>
+            <Route path='/library' element={<Library/>}/>
+            <Route path='/activities' element={<Activities/>}/>
             <Route path='/notices' element={<Notices/>}/>
             <Route path='/teachers' element={<Teachers/>}/>
             

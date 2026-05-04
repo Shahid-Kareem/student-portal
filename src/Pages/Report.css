@@ -1,0 +1,177 @@
+
+/* PAGE */
+.rc-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* STACK */
+.rc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* HEADER ROW */
+.rc-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* TERM */
+.rc-term {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* SUBTEXT */
+.rc-subtext {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* GPA */
+.rc-gpa-box {
+  text-align: right;
+}
+
+.rc-gpa {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.rc-gpa-high {
+  color: var(--accent3);
+}
+
+/* SUBJECT GRID */
+.rc-subject-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+/* SUBJECT CARD */
+.rc-subject-card {
+  background: var(--card2);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+/* SUBJECT NAME */
+.rc-subject-name {
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* MARKS */
+.rc-marks {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 3px;
+}
+
+.rc-a { color: var(--accent); }
+.rc-a2 { color: var(--accent2); }
+.rc-a3 { color: var(--accent3); }
+
+/* GRADE CHIP */
+.rc-grade-chip {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+}
+
+/* PROGRESS */
+.rc-progress {
+  margin-top: 14px;
+}
+
+/* CHART */
+.rc-chart-scroll {
+  overflow-x: auto;
+}
+
+.rc-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  min-width: 500px;
+}
+
+/* BAR GROUP */
+.rc-bar-group {
+  flex: 1;
+  text-align: center;
+}
+
+/* DIFF */
+.rc-diff {
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.rc-up { color: var(--success); }
+.rc-down { color: var(--danger); }
+
+/* BARS */
+.rc-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 80px;
+}
+
+.rc-bar {
+  flex: 1;
+  background: var(--faint);
+  border-radius: 3px 3px 0 0;
+}
+
+.rc-bar-t2 {
+  background: rgba(91,140,255,0.5);
+}
+
+.rc-bar-t3 {
+  background: var(--accent3);
+}
+
+/* LABEL */
+.rc-label {
+  font-size: 0.58rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* LEGEND */
+.rc-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.t1 { background: var(--faint); }
+.t2 { background: rgba(91,140,255,0.5); }
+.t3 { background: var(--accent3); }

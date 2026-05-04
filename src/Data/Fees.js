@@ -5,7 +5,7 @@ export const fees = [
   {label:"Lab Charges (Spring)",amount:1500,status:"paid",date:"Feb 5, 2026"},
   {label:"Sports Fund",amount:500,status:"paid",date:"Feb 5, 2026"},
   {label:"Tuition Fee (Apr)",amount:9000,status:"paid",date:"Apr 3, 2026"},
-  {label:"Tuition Fee (May)",amount:9000,status:"paid",date:" May 3, 2026"},
+  {label:"Tuition Fee (May)",amount:19000,status:"paid",date:" May 3, 2026"},
   {label:"Exam Registration",amount:1200,status:"unpaid",date:null},
   {label:"Library Fine",amount:70,status:"unpaid",date:null},
 ];
