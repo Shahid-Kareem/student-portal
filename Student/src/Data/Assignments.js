@@ -7,4 +7,5 @@ export const assignments = [
   {title:"Urdu: Short Story Composition",subject:"Urdu",due:"Apr 30, 2026",status:"late",priority:"low"},
   {title:"Physics: Wave Motion Problems",subject:"Physics",due:"May 3, 2026",status:"pending",priority:"medium"},
   {title:"Pakistan Studies: Map Activity",subject:"Pakistan Studies",due:"May 5, 2026",status:"pending",priority:"low"},
+  {title:"Pakistan Studies: Map Activity",subject:"Pakistan Studies",due:"May 5, 2026",status:"pending",priority:"low"},
 ];

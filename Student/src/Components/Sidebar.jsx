@@ -127,8 +127,17 @@ function Sidebar() {
         className={`menu-item ${isActive("/weather") ? "active" : ""}`}
         onClick={() => navigate("/weather")}
       >
-        <FontAwesomeIcon icon={faCloudSun}/> Weather
+      <FontAwesomeIcon icon={faCloudSun}/> Weather
       </div>
+
+      <div
+        className={`menu-item ${isActive("/login") ? "active" : ""}`}
+        onClick={() => navigate("/login")}
+      >
+       Login
+      </div>
+
+      
 
 
 

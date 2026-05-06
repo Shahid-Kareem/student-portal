@@ -14,6 +14,7 @@ import Activities from "./Pages/Activities";
 import Notices from "./Pages/Notices";
 import Teachers from "./Pages/Teachers";
 import Weather from "./Pages/Weather";
+import Login from "./Pages/Login";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path='/teachers' element={<Teachers/>}/>
             
             <Route path="/weather" element={<Weather/>}/>
+            <Route path='/login' element={<Login/>}/>
           </Routes>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Topbar from '../Components/Topbar';
 import "./Report.css";
 import Card from "../Components/Card";
 import CardHeader from "../Components/CardHeader";
@@ -43,6 +44,11 @@ const Report = () => {
   };
 
   return (
+    <>
+     <Topbar 
+        page="report" 
+        pageTitles={{ report: "Reports & Cards" }} 
+      />
     <div className="rc-page">
 
       {/* TERM CARDS */}
@@ -190,6 +196,7 @@ const Report = () => {
       </Card>
 
     </div>
+    </>
   );
 };
 
