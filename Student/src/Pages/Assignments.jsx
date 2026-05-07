@@ -1,108 +1,48 @@
 import React, { useEffect, useState } from "react";
 import Topbar from "../Components/Topbar";
 import "./Assignments.css";
+import {useAuth} from '../Context/AuthContext';
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
 
-  const API_URL =
-    "http://192.168.1.14:8001/api/subjects/assignments/";
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-  // 🔐 YOUR JWT TOKEN (TESTING ONLY)
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzc4MTM4NjE3LCJpYXQiOjE3NzgwNTIyMTcsImp0aSI6IjYyNWFlMGI0YjFmNTQzNmViYWUyNTgzODU5MDM1OGZlIiwidXNlcl9pZCI6MX0.jjvaYe1aeAQtGlgWWVJUspSzk4t_z3LOZiJ2WDJ4BL0";
+  const API_URL = `${API_BASE_URL}/api/subjects/assignments/`;
+  
 
-  // ✅ FETCH FROM API WITH AUTH
-  useEffect(() => {
-    fetch(API_URL, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
+  const {token} = useAuth();
+
+useEffect(() => {
+  if (!token) {
+    setLoading(false);
+    return;
+  }
+
+  fetch(API_URL, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      setAssignments(data.results);
+      setLoading(false);
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Unauthorized or API error");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("API DATA:", data);
+    .catch(() => setLoading(false));
+}, [token]);
 
-        setAssignments(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("API Error:", err);
-        setLoading(false);
-      });
-  }, []);
-
-  // STATUS MAP
-  const statusMap = {
-    done: ["✅ Submitted", "success"],
-    progress: ["⏳ In Progress", "warn"],
-    late: ["🔴 Overdue", "danger"],
-    pending: ["📋 Not Started", "muted"]
-  };
-
-  // SAFE FILTER
-  const safeAssignments = Array.isArray(assignments)
-    ? assignments
-    : [];
-
-  const filtered =
-    filter === "all"
-      ? safeAssignments
-      : safeAssignments.filter((a) => a.status === filter);
-
-  const stats = [
-    {
-      label: "Total",
-      value: safeAssignments.length,
-      key: "all",
-      icon: "📝"
-    },
-    {
-      label: "Submitted",
-      value: safeAssignments.filter((a) => a.status === "done")
-        .length,
-      key: "done",
-      icon: "✅",
-      color: "success"
-    },
-    {
-      label: "Pending",
-      value: safeAssignments.filter(
-        (a) => a.status === "pending"
-      ).length,
-      key: "pending",
-      icon: "📋",
-      color: "muted"
-    },
-    {
-      label: "Overdue",
-      value: safeAssignments.filter((a) => a.status === "late")
-        .length,
-      key: "late",
-      icon: "🔴",
-      color: "danger"
-    }
-  ];
-
-  const icons = {
-    Mathematics: "📊",
-    Biology: "🧬",
-    "Computer Sci.": "💻",
-    English: "✍️",
-    Chemistry: "⚗️",
-    Urdu: "📝",
-    Physics: "⚡",
-    "Pakistan Studies": "🗺️"
-  };
+  // FILTER
+  const filtered = assignments.filter((a) => {
+    if (filter === "all") return true;
+    if (filter === "active") return !a.is_overdue;
+    if (filter === "overdue") return a.is_overdue;
+    return true;
+  });
 
   return (
     <>
@@ -116,38 +56,9 @@ const Assignments = () => {
           <h3>Loading assignments...</h3>
         ) : (
           <>
-            {/* STATS */}
-            <div className="stats-grid">
-              {stats.map((s) => (
-                <div
-                  key={s.key}
-                  className="stat-card"
-                  onClick={() => setFilter(s.key)}
-                >
-                  <div className="stat-icon">{s.icon}</div>
-                  <div>
-                    <div
-                      className={`stat-value ${s.color}`}
-                    >
-                      {s.value}
-                    </div>
-                    <div className="stat-label">
-                      {s.label}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* FILTER BUTTONS */}
+            {/* FILTER */}
             <div className="filter-row">
-              {[
-                "all",
-                "done",
-                "progress",
-                "pending",
-                "late"
-              ].map((f) => (
+              {["all", "active", "overdue"].map((f) => (
                 <button
                   key={f}
                   className={`filter-btn ${
@@ -162,48 +73,74 @@ const Assignments = () => {
 
             {/* LIST */}
             <div className="assignment-list">
-              {filtered.map((a, i) => {
-                const [text, colorKey] =
-                  statusMap[a.status] || [
-                    "Unknown",
-                    "muted"
-                  ];
+              {filtered.map((a) => (
+                <div key={a.id} className="assignment-card">
 
-                return (
-                  <div
-                    key={a.id || i}
-                    className="assignment-card"
-                  >
-                    <div className="subject-icon">
-                      {icons[a.subject] || "📄"}
+                  {/* SUBJECT ICON */}
+                  {/* <div className="subject-icon">
+                    📚
+                  </div> */}
+
+                  {/* MAIN INFO */}
+                  <div className="assignment-info">
+
+                    <div className="title">
+                      {a.title}
                     </div>
 
-                    <div className="assignment-info">
-                      <div className="title">
-                        {a.title}
+                    <div className="desc">
+                      📝 {a.description || "No description"}
+                    </div>
+
+                    <div className="meta">
+                      <span>📚 {a.subject_name}</span>
+                      <span>
+                        📅 {new Date(a.due_date).toLocaleString()}
+                      </span>
+                      <span>🎯 Marks: {a.max_marks}</span>
+                    </div>
+
+                    {/* EXTRA DETAILS */}
+                    <div className="extra">
+
+                      <p>📌 Instructions: {a.instructions || "None"}</p>
+
+                      <p>📊 Status: {a.status}</p>
+
+                      <p>
+                        ⏳ Days Remaining: {a.days_remaining}
+                      </p>
+
+                      <p>
+                        📅 Created:{" "}
+                        {new Date(a.created_at).toLocaleString()}
+                      </p>
+
+                    </div>
+
+                    {/* ATTACHMENT */}
+                    {a.attachment && (
+                      <div className="attachment">
+                        📎{" "}
+                        <a href={a.attachment} target="_blank">
+                          View Attachment
+                        </a>
                       </div>
+                    )}
 
-                      <div className="meta">
-                        <span>📚 {a.subject}</span>
-                        <span>
-                          📅 {a.due_date || a.due}
-                        </span>
-                        <span
-                          className={`priority ${a.priority}`}
-                        >
-                          ⚑ {a.priority || "normal"} priority
-                        </span>
-                      </div>
-                    </div>
-
-                    <div
-                      className={`status ${colorKey}`}
-                    >
-                      {text}
-                    </div>
                   </div>
-                );
-              })}
+
+                  {/* STATUS */}
+                  <div
+                    className={`status ${
+                      a.is_overdue ? "danger" : "success"
+                    }`}
+                  >
+                    {a.is_overdue ? "🔴 Overdue" : "🟢 Active"}
+                  </div>
+
+                </div>
+              ))}
             </div>
           </>
         )}

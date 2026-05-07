@@ -1,62 +1,57 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import {useAuth} from '../Context/AuthContext';
 import React, { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleLogin = async (e) => {
-  e.preventDefault(); // IMPORTANT FIX
+    e.preventDefault();
 
-  if (!username || !password) {
-    setMessage("Please enter username and password ⚠️");
-    return;
-  }
-
-  setLoading(true);
-  setMessage("");
-
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/auth/login/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
-
-    const data = await response.json();
-
-    console.log("LOGIN RESPONSE:", data);
-    if (response.ok) {
-
-  login(data.access, data.refresh); // 🔥 IMPORTANT
-
-  setMessage("Login Successful ✅");
-
-  navigate("/dashboard");
-}
-
-else {
-      setMessage(data?.detail || "Invalid credentials ❌");
+    if (!username || !password) {
+      setMessage("Please enter username and password ⚠️");
+      return;
     }
 
-  } catch (error) {
-    console.error(error);
-    setMessage("Server not reachable ❌");
-  } finally {
-    setLoading(false);
-  }
-};
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/api/auth/login/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        login(data.access, data.refresh);
+        setMessage("Login Successful ✅");
+        navigate("/dashboard");
+      } else {
+        setMessage(data?.detail || "Invalid credentials ❌");
+      }
+    } catch (error) {
+      setMessage("Server not reachable ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
 
