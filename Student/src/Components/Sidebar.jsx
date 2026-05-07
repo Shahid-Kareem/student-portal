@@ -131,8 +131,8 @@ function Sidebar() {
       </div>
 
       <div
-        className={`menu-item ${isActive("/login") ? "active" : ""}`}
-        onClick={() => navigate("/login")}
+        className={`menu-item ${isActive("/") ? "active" : ""}`}
+        onClick={() => navigate("/")}
       >
        Login
       </div>
