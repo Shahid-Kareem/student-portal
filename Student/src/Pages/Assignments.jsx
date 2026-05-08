@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Topbar from "../Components/Topbar";
 import "./Assignments.css";
-import {useAuth} from '../Context/AuthContext';
+import { useAuth } from "../Context/AuthContext";
 
 const Assignments = () => {
   const [assignments, setAssignments] = useState([]);
@@ -11,30 +12,34 @@ const Assignments = () => {
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const API_URL = `${API_BASE_URL}/api/subjects/assignments/`;
-  
 
-  const {token} = useAuth();
+  const { token } = useAuth();
 
-useEffect(() => {
-  if (!token) {
-    setLoading(false);
-    return;
-  }
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      if (!token) {
+        setLoading(false);
+        return;
+      }
 
-  fetch(API_URL, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      setAssignments(data.results);
-      setLoading(false);
-    })
-    .catch(() => setLoading(false));
-}, [token]);
+      try {
+        const response = await axios.get(API_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setAssignments(response.data.results);
+
+      } catch (error) {
+        console.log("Error fetching assignments:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAssignments();
+  }, [token]);
 
   // FILTER
   const filtered = assignments.filter((a) => {
@@ -76,11 +81,6 @@ useEffect(() => {
               {filtered.map((a) => (
                 <div key={a.id} className="assignment-card">
 
-                  {/* SUBJECT ICON */}
-                  {/* <div className="subject-icon">
-                    📚
-                  </div> */}
-
                   {/* MAIN INFO */}
                   <div className="assignment-info">
 
@@ -94,18 +94,26 @@ useEffect(() => {
 
                     <div className="meta">
                       <span>📚 {a.subject_name}</span>
+
                       <span>
                         📅 {new Date(a.due_date).toLocaleString()}
                       </span>
-                      <span>🎯 Marks: {a.max_marks}</span>
+
+                      <span>
+                        🎯 Marks: {a.max_marks}
+                      </span>
                     </div>
 
                     {/* EXTRA DETAILS */}
                     <div className="extra">
 
-                      <p>📌 Instructions: {a.instructions || "None"}</p>
+                      <p>
+                        📌 Instructions: {a.instructions || "None"}
+                      </p>
 
-                      <p>📊 Status: {a.status}</p>
+                      <p>
+                        📊 Status: {a.status}
+                      </p>
 
                       <p>
                         ⏳ Days Remaining: {a.days_remaining}
@@ -122,7 +130,11 @@ useEffect(() => {
                     {a.attachment && (
                       <div className="attachment">
                         📎{" "}
-                        <a href={a.attachment} target="_blank">
+                        <a
+                          href={a.attachment}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           View Attachment
                         </a>
                       </div>

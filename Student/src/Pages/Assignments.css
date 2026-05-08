@@ -1,126 +1,359 @@
+/* Assignments.css - Professional Academic Dashboard */
+
+/* ─── CSS Variables ─── */
+:root {
+  --primar: rgb(29, 3, 70);
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --success: #10b981;
+  --success-bg: #d1fae5;
+  --danger: #ef4444;
+  --danger-bg: #fee2e2;
+  --warning: #f59e0b;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --bg-main: #f1f5f9;
+  --bg-card: #ffffff;
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Container ─── */
 .assign-container {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: calc(100vh - 80px);
+  background-color: var(--bg-main);
+  margin-top: 20px;
 }
 
-/* STATS */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
-.stat-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-
-.stat-icon {
-  font-size: 1.4rem;
-}
-
-.stat-value {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--accent);
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-/* COLORS */
-.success { color: var(--success); }
-.warn { color: var(--warn); }
-.danger { color: var(--danger); }
-.muted { color: var(--muted); }
-
-/* FILTER */
-.filter-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: transparent;
-  font-size: 0.78rem;
-  cursor: pointer;
-  color: var(--muted);
-  transition: 0.2s;
-}
-
-.filter-btn.active {
-  border-color: var(--accent);
-  background: rgba(79,124,247,0.1);
-  color: var(--accent);
-}
-
-/* LIST */
-.assignment-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.assignment-card {
-  background: ghostwhite;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 18px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.subject-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: rgba(79,124,247,0.12);
+/* ─── Loading State ─── */
+.assign-container > h3 {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 4rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  gap: 0.75rem;
 }
 
+.assign-container > h3::before {
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Filter Row ─── */
+.filter-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+}
+
+.filter-btn {
+  padding: 0.625rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background: var(--primar);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-btn.active:hover {
+  background: var(--primar);
+}
+
+/* ─── Assignment List ─── */
+.assignment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ─── Assignment Card ─── */
+.assignment-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.assignment-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.assignment-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Status-based left border */
+.assignment-card:has(.status.danger)::before {
+  background: var(--danger);
+}
+
+.assignment-card:has(.status.success)::before {
+  background: var(--success);
+}
+
+/* ─── Assignment Info ─── */
 .assignment-info {
   flex: 1;
+  min-width: 0;
 }
 
-.title {
-  font-size: 0.9rem;
-  font-weight: 600;
+.assignment-info .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
+.assignment-info .desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  padding: 0.75rem;
+  background: var(--bg-main);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary-light);
+}
+
+/* ─── Meta Row ─── */
 .meta {
   display: flex;
-  gap: 12px;
-  font-size: 0.72rem;
-  color: var(--muted);
-  margin-top: 3px;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.priority.high { color: var(--danger); }
-.priority.medium { color: var(--warn); }
-.priority.low { color: var(--success); }
+.meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  background: var(--bg-main);
+  border-radius: 9999px;
+}
 
-.status {
-  font-size: 0.78rem;
+/* ─── Extra Details ─── */
+.extra {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.extra p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.extra p strong,
+.extra p:first-letter {
+  color: var(--text-primary);
   font-weight: 600;
+}
+
+/* ─── Attachment ─── */
+.attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--primar);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.attachment a {
+  color: white;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.attachment a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ─── Status Badge ─── */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
   white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.status.success {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.status.danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+/* ─── Empty State ─── */
+.assignment-list:empty::after {
+  content: "No assignments found";
+  display: block;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .assign-container {
+    padding: 1rem;
+  }
+
+  .filter-row {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .assignment-card {
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+
+  .assignment-card::before {
+    width: 100%;
+    height: 4px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .meta span {
+    width: fit-content;
+  }
+
+  .extra {
+    grid-template-columns: 1fr;
+  }
+
+  .status {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .assignment-info .title {
+    font-size: 1.125rem;
+  }
+
+  .extra p {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ─── Dark Mode Support (Optional) ─── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --border: #334155;
+    --primary-light: #1e3a5f;
+    --success-bg: #064e3b;
+    --danger-bg: #7f1d1d;
+  }
 }
