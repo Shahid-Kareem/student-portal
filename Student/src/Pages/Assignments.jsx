@@ -10,150 +10,118 @@ const Assignments = () => {
   const [loading, setLoading] = useState(true);
 
   const API_BASE_URL = import.meta.env.VITE_API_URL;
-
   const API_URL = `${API_BASE_URL}/api/subjects/assignments/`;
-
   const { token } = useAuth();
 
   useEffect(() => {
     const fetchAssignments = async () => {
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-
+      if (!token) { setLoading(false); return; }
       try {
         const response = await axios.get(API_URL, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
-
         setAssignments(response.data.results);
-
       } catch (error) {
         console.log("Error fetching assignments:", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchAssignments();
   }, [token]);
 
-  // FILTER
   const filtered = assignments.filter((a) => {
-    if (filter === "all") return true;
     if (filter === "active") return !a.is_overdue;
     if (filter === "overdue") return a.is_overdue;
     return true;
   });
 
+  const counts = {
+    all: assignments.length,
+    active: assignments.filter((a) => !a.is_overdue).length,
+    overdue: assignments.filter((a) => a.is_overdue).length,
+  };
+
+  const filters = [
+    { key: "all", label: "All" },
+    { key: "active", label: "Active" },
+    { key: "overdue", label: "Overdue" },
+  ];
+
   return (
     <>
-      <Topbar
-        page="assignments"
-        pageTitles={{ assignments: "Assignments" }}
-      />
+      <Topbar page="assignments" pageTitles={{ assignments: "Assignments" }} />
 
       <div className="assign-container">
         {loading ? (
-          <h3>Loading assignments...</h3>
+          <div className="assign-loading">
+            <span className="spinner" />
+            Loading assignments…
+          </div>
         ) : (
           <>
-            {/* FILTER */}
+
+            {/* Filters */}
             <div className="filter-row">
-              {["all", "active", "overdue"].map((f) => (
+              {filters.map(({ key, label }) => (
                 <button
-                  key={f}
-                  className={`filter-btn ${
-                    filter === f ? "active" : ""
-                  }`}
-                  onClick={() => setFilter(f)}
+                  key={key}
+                  className={`filter-btn ${filter === key ? "active" : ""} filter-${key}`}
+                  onClick={() => setFilter(key)}
                 >
-                  {f}
+                  {label}
+                  <span className="filter-count">{counts[key]}</span>
                 </button>
               ))}
             </div>
 
-            {/* LIST */}
-            <div className="assignment-list">
-              {filtered.map((a) => (
-                <div key={a.id} className="assignment-card">
-
-                  {/* MAIN INFO */}
-                  <div className="assignment-info">
-
-                    <div className="title">
-                      {a.title}
-                    </div>
-
-                    <div className="desc">
-                      📝 {a.description || "No description"}
-                    </div>
-
-                    <div className="meta">
-                      <span>📚 {a.subject_name}</span>
-
-                      <span>
-                        📅 {new Date(a.due_date).toLocaleString()}
-                      </span>
-
-                      <span>
-                        🎯 Marks: {a.max_marks}
-                      </span>
-                    </div>
-
-                    {/* EXTRA DETAILS */}
-                    <div className="extra">
-
-                      <p>
-                        📌 Instructions: {a.instructions || "None"}
-                      </p>
-
-                      <p>
-                        📊 Status: {a.status}
-                      </p>
-
-                      <p>
-                        ⏳ Days Remaining: {a.days_remaining}
-                      </p>
-
-                      <p>
-                        📅 Created:{" "}
-                        {new Date(a.created_at).toLocaleString()}
-                      </p>
-
-                    </div>
-
-                    {/* ATTACHMENT */}
-                    {a.attachment && (
-                      <div className="attachment">
-                        📎{" "}
-                        <a
-                          href={a.attachment}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View Attachment
-                        </a>
-                      </div>
-                    )}
-
-                  </div>
-
-                  {/* STATUS */}
+            {/* List */}
+            {filtered.length === 0 ? (
+              <div className="empty-state">
+                <div className="empty-icon">📋</div>
+                <p>No {filter === "all" ? "" : filter} assignments found.</p>
+              </div>
+            ) : (
+              <div className="assignment-list">
+                {filtered.map((a) => (
                   <div
-                    className={`status ${
-                      a.is_overdue ? "danger" : "success"
-                    }`}
+                    key={a.id}
+                    className={`assignment-card ${a.is_overdue ? "card-overdue" : "card-active"}`}
                   >
-                    {a.is_overdue ? "🔴 Overdue" : "🟢 Active"}
-                  </div>
+                    <div className="card-inner">
+                      <div className="card-title-row">
+                        <h3 className="card-title">{a.title}</h3>
+                        <span className={`status-badge ${a.is_overdue ? "danger" : "success"}`}>
+                          {a.is_overdue ? "Overdue" : "Active"}
+                        </span>
+                      </div>
 
-                </div>
-              ))}
-            </div>
+                      <div className="meta-chips">
+                        <span className="chip chip-subject">{a.subject_name}</span>
+                        <span className={`chip ${a.is_overdue ? "chip-danger" : "chip-due"}`}>
+                          Due {new Date(a.due_date).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                        </span>
+                        <span className="chip chip-marks">{a.max_marks} Marks</span>
+                        {!a.is_overdue && a.days_remaining != null && (
+                          <span className="chip chip-days">{a.days_remaining}d left</span>
+                        )}
+                      </div>
+
+                      <div className="card-footer-row">
+                        <span className="footer-meta capitalize">{a.status}</span>
+                        <span className="footer-sep">·</span>
+                        <span className="footer-meta">
+                          {new Date(a.created_at).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
+                        </span>
+                        {a.attachment && (
+                          <a className="attachment-btn" href={a.attachment} target="_blank" rel="noreferrer">Attachment</a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </>
         )}
       </div>

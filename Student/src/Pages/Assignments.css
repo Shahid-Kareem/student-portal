@@ -1,359 +1,271 @@
-/* Assignments.css - Professional Academic Dashboard */
+/* Assignments.css */
 
-/* ─── CSS Variables ─── */
 :root {
-  --primar: rgb(29, 3, 70);
-  --primary-dark: #1d4ed8;
-  --primary-light: #dbeafe;
-  --success: #10b981;
+  --primary: rgb(29, 3, 70);
+  --primary-light: #ede9fe;
+  --success: #059669;
   --success-bg: #d1fae5;
-  --danger: #ef4444;
+  --danger: #dc2626;
   --danger-bg: #fee2e2;
-  --warning: #f59e0b;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
+  --warning: #d97706;
+  --warning-bg: #fef3c7;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
   --text-muted: #94a3b8;
   --bg-main: #f1f5f9;
   --bg-card: #ffffff;
   --border: #e2e8f0;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.12);
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
-  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-lg: 14px;
+  --transition: all 0.2s ease;
 }
 
 /* ─── Container ─── */
 .assign-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 24px auto 0;
   padding: 2rem 1.5rem;
   min-height: calc(100vh - 80px);
-  background-color: var(--bg-main);
-  margin-top: 20px;
 }
 
-/* ─── Loading State ─── */
-.assign-container > h3 {
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 1.25rem;
-  font-weight: 500;
-  padding: 4rem 0;
+/* ─── Loading ─── */
+.assign-loading {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  padding: 5rem 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.assign-container > h3::before {
-  content: "";
-  width: 24px;
-  height: 24px;
-  border: 3px solid var(--border);
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--border);
   border-top-color: var(--primary);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* ─── Filter Row ─── */
 .filter-row {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 2rem;
-  padding: 0.5rem;
+  margin-bottom: 1.75rem;
+  padding: 0.375rem;
   background: var(--bg-card);
   border-radius: var(--radius-md);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   width: fit-content;
 }
 
 .filter-btn {
-  padding: 0.625rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.125rem;
   border: none;
   background: transparent;
   color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 600;
-  text-transform: capitalize;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition);
-  position: relative;
-  overflow: hidden;
 }
 
-.filter-btn:hover {
-  background: var(--primary-light);
-  color: var(--primary);
+.filter-btn:hover { background: var(--bg-main); color: var(--text-primary); }
+
+.filter-btn.active { background: var(--primary); color: #fff; }
+.filter-btn.active:hover { background: var(--primary); }
+
+.filter-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.2);
+  color: inherit;
+  min-width: 20px;
+  text-align: center;
 }
 
-.filter-btn.active {
-  background: var(--primar);
-  color: white;
-  box-shadow: var(--shadow-sm);
+.filter-btn:not(.active) .filter-count {
+  background: var(--bg-main);
+  color: var(--text-muted);
 }
 
-.filter-btn.active:hover {
-  background: var(--primar);
+/* ─── Empty State ─── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border);
+}
+
+.empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+.empty-state p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  text-transform: capitalize;
 }
 
 /* ─── Assignment List ─── */
 .assignment-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 /* ─── Assignment Card ─── */
 .assignment-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
   background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
-  transition: var(--transition);
-  position: relative;
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-}
-
-.assignment-card::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--primary);
-  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  transition: var(--transition);
+  border-left: 3px solid transparent;
 }
 
 .assignment-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
-/* Status-based left border */
-.assignment-card:has(.status.danger)::before {
-  background: var(--danger);
+.card-active  { border-left-color: var(--success); }
+.card-overdue { border-left-color: var(--danger); }
+
+.card-inner {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.assignment-card:has(.status.success)::before {
-  background: var(--success);
+/* ─── Title Row ─── */
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-/* ─── Assignment Info ─── */
-.assignment-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.assignment-info .title {
-  font-size: 1.25rem;
+.card-title {
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin: 0;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.assignment-info .desc {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  line-height: 1.5;
-  padding: 0.75rem;
-  background: var(--bg-main);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid var(--primary-light);
+/* ─── Status Badge ─── */
+.status-badge {
+  flex-shrink: 0;
+  padding: 0.15rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-/* ─── Meta Row ─── */
-.meta {
+.status-badge.success { background: var(--success-bg); color: var(--success); }
+.status-badge.danger  { background: var(--danger-bg);  color: var(--danger); }
+
+/* ─── Meta Chips ─── */
+.meta-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  gap: 0.35rem;
 }
 
-.meta span {
+.chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-  padding: 0.375rem 0.75rem;
-  background: var(--bg-main);
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 9999px;
-}
-
-/* ─── Extra Details ─── */
-.extra {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.extra p {
-  margin: 0;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--bg-main);
   color: var(--text-secondary);
-  line-height: 1.5;
+  border: 1px solid var(--border);
 }
 
-.extra p strong,
-.extra p:first-letter {
-  color: var(--text-primary);
-  font-weight: 600;
+.chip-subject { background: var(--primary-light); color: var(--primary); border-color: transparent; }
+.chip-due     { background: var(--warning-bg); color: var(--warning); border-color: transparent; }
+.chip-danger  { background: var(--danger-bg); color: var(--danger); border-color: transparent; }
+.chip-marks   { background: #eff6ff; color: #2563eb; border-color: transparent; }
+.chip-days    { background: #f0fdf4; color: var(--success); border-color: transparent; }
+
+/* ─── Footer Row ─── */
+.card-footer-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
 }
 
-/* ─── Attachment ─── */
-.attachment {
+.footer-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.footer-meta.capitalize { text-transform: capitalize; }
+
+.footer-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* ─── Attachment Button ─── */
+.attachment-btn {
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: var(--primar);
+  padding: 0.2rem 0.65rem;
+  background: var(--primary);
+  color: #fff;
   border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.attachment a {
-  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
   text-decoration: none;
   transition: var(--transition);
 }
 
-.attachment a:hover {
-  color: var(--primary-dark);
-  text-decoration: underline;
-}
-
-/* ─── Status Badge ─── */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: 0.25rem;
-}
-
-.status.success {
-  background: var(--success-bg);
-  color: var(--success);
-  border: 1px solid var(--success);
-}
-
-.status.danger {
-  background: var(--danger-bg);
-  color: var(--danger);
-  border: 1px solid var(--danger);
-}
-
-/* ─── Empty State ─── */
-.assignment-list:empty::after {
-  content: "No assignments found";
-  display: block;
-  text-align: center;
-  padding: 4rem 2rem;
-  color: var(--text-muted);
-  font-size: 1.125rem;
-  font-weight: 500;
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-}
+.attachment-btn:hover { opacity: 0.85; }
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
-  .assign-container {
-    padding: 1rem;
-  }
-
-  .filter-row {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .filter-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.8125rem;
-  }
-
-  .assignment-card {
-    flex-direction: column;
-    padding: 1.25rem;
-  }
-
-  .assignment-card::before {
-    width: 100%;
-    height: 4px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-
-  .meta {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .meta span {
-    width: fit-content;
-  }
-
-  .extra {
-    grid-template-columns: 1fr;
-  }
-
-  .status {
-    align-self: flex-start;
-  }
+  .assignment-list { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 480px) {
-  .assignment-info .title {
-    font-size: 1.125rem;
-  }
+@media (max-width: 640px) {
+  .assign-container { padding: 1rem; }
 
-  .extra p {
-    font-size: 0.8125rem;
-  }
-}
+  .assign-summary { width: 100%; justify-content: space-around; }
 
-/* ─── Dark Mode Support (Optional) ─── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --bg-main: #0f172a;
-    --bg-card: #1e293b;
-    --border: #334155;
-    --primary-light: #1e3a5f;
-    --success-bg: #064e3b;
-    --danger-bg: #7f1d1d;
-  }
+  .filter-row { width: 100%; }
+  .filter-btn { flex: 1; justify-content: center; }
+
+  .card-title-row { flex-wrap: wrap; }
+  .status-badge   { align-self: flex-start; }
 }
