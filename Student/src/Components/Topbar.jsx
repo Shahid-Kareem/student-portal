@@ -1,9 +1,13 @@
 import React from "react";
 import Avatar from "./Avatar";
-import {student} from '../Data/Student';
+import { student } from '../Data/Student';
+import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "./Topbar.css";
 
 const Topbar = ({ page, pageTitles }) => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -11,6 +15,11 @@ const Topbar = ({ page, pageTitles }) => {
     month: "long",
     day: "numeric",
   });
+
+  const handleLogout = () => {
+    logout();
+    navigate("/", { replace: true });
+  };
 
   return (
     <header className="topbar">
@@ -20,7 +29,6 @@ const Topbar = ({ page, pageTitles }) => {
         <div className="topbar-title">
           {pageTitles[page]}
         </div>
-
         <div className="topbar-date">
           {today}
         </div>
@@ -36,16 +44,20 @@ const Topbar = ({ page, pageTitles }) => {
         {["🔔", "✉️"].map((ic, i) => (
           <div key={i} className="topbar-icon">
             {ic}
-
-            {i === 0 && (
-              <div className="topbar-notification-dot" />
-            )}
+            {i === 0 && <div className="topbar-notification-dot" />}
           </div>
         ))}
 
-        <Avatar initials={student.name.split(" ").map(n => n[0]).join("")}
-         size={36}
-          />
+        <Avatar
+          initials={student.name.split(" ").map(n => n[0]).join("")}
+          size={36}
+        />
+
+        {/* Logout */}
+        <button className="topbar-logout" onClick={handleLogout} title="Logout">
+          <span className="logout-icon">⏻</span>
+          <span className="logout-label">Logout</span>
+        </button>
 
       </div>
     </header>

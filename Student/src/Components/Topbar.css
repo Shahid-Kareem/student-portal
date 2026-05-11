@@ -88,3 +88,35 @@
   background: red;
   border-radius: 50%;
 }
+
+/* Logout button */
+.topbar-logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.topbar-logout:hover {
+  background: rgba(239, 68, 68, 0.85);
+  border-color: transparent;
+}
+
+.logout-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .logout-label { display: none; }
+  .topbar-logout { padding: 6px 8px; }
+}
