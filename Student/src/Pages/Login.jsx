@@ -44,10 +44,10 @@ const Login = () => {
         setMessage("Login Successful ✅");
         navigate("/dashboard");
       } else {
-        setMessage(data?.detail || "Invalid credentials ❌");
+        setMessage(data?.detail || "Invalid credentials");
       }
     } catch (error) {
-      setMessage("Server not reachable ❌");
+      setMessage("Server not reachable ");
     } finally {
       setLoading(false);
     }
