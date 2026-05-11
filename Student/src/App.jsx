@@ -8,6 +8,7 @@ import Profile from "./Pages/Profile";
 import Schedule from "./Pages/Schedule";
 import SubjectsGrades from "./Pages/SubjectsGrades";
 import Assignments from "./Pages/Assignments";
+import Quize from "./Pages/Quize";
 import Exams from "./Pages/Exams";
 import Report from "./Pages/Report";
 import Attendance from "./Pages/Attendance";
@@ -50,6 +51,7 @@ function App() {
             <Route path="/schedule"     element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
             <Route path="/subjects"     element={<ProtectedRoute><SubjectsGrades /></ProtectedRoute>} />
             <Route path="/assignments"  element={<ProtectedRoute><Assignments /></ProtectedRoute>} />
+            <Route path="/quize"  element={<ProtectedRoute><Quize /></ProtectedRoute>} />
             <Route path="/exams"        element={<ProtectedRoute><Exams /></ProtectedRoute>} />
             <Route path="/report"       element={<ProtectedRoute><Report /></ProtectedRoute>} />
             <Route path="/attendance"   element={<ProtectedRoute><Attendance /></ProtectedRoute>} />

@@ -9,6 +9,8 @@ import { faGraduationCap } from "@fortawesome/free-solid-svg-icons/faGraduationC
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons/faUserCheck";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 
+
+
 function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -58,6 +60,15 @@ function Sidebar() {
       >
         <FontAwesomeIcon icon={faClipboardList}/> Assignments
       </div>
+
+      <div
+        className={`menu-item ${isActive("/quize") ? "active" : ""}`}
+        onClick={() => navigate("/quize")}
+      >
+        <FontAwesomeIcon icon={faFilePen}/> Quize
+      </div>
+
+
 
       <div
         className={`menu-item ${isActive("/exams") ? "active" : ""}`}
@@ -130,12 +141,7 @@ function Sidebar() {
       <FontAwesomeIcon icon={faCloudSun}/> Weather
       </div>
 
-      <div
-        className={`menu-item ${isActive("/") ? "active" : ""}`}
-        onClick={() => navigate("/")}
-      >
-       Login
-      </div>
+
 
       
 
