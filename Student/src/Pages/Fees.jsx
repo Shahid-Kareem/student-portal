@@ -114,6 +114,9 @@ function Fees() {
 
   const nextDue = fees.find((f) => f.status === "unpaid");
 
+  const totalAmount = fees.reduce((a, f) => a + Number(f.fee_amount), 0);
+  const paidPct = totalAmount > 0 ? Math.round((paid / totalAmount) * 100) : 0;
+
   return (
     <>
       <Topbar
@@ -131,135 +134,65 @@ function Fees() {
         ) : (
           <>
 
-            {/* ================= SUMMARY ================= */}
-
+            {/* ── SUMMARY ── */}
             <div className="fee-summary">
 
               {/* STUDENT INFO */}
               <div className="fee-card student">
-
-                <div className="card-icon">
-                  👤
-                </div>
-
+                <div className="card-icon">👨‍🎓</div>
                 <div className="card-content">
-
                   <h3>Student Info</h3>
-
-                  <p>
-                    <strong>Name:</strong>{" "}
-                    {student?.student_name || "—"}
-                  </p>
-
-                  <p>
-                    <strong>Class:</strong>{" "}
-                    {student?.student_class || "—"}
-                  </p>
-
-                  <p>
-                    <strong>Section:</strong>{" "}
-                    {student?.student_section || "—"}
-                  </p>
-
-                  <p>
-                    <strong>ID:</strong>{" "}
-                    {student?.student || "—"}
-                  </p>
-
+                  <p><strong>Name:</strong> {student?.student_name || "—"}</p>
+                  <p><strong>Class:</strong> {student?.student_class || "—"}</p>
+                  <p><strong>Section:</strong> {student?.student_section || "—"}</p>
+                  <p><strong>ID:</strong> {student?.student || "—"}</p>
                 </div>
               </div>
 
               {/* TOTAL DUE */}
               <div className="fee-card total-due">
-
-                <div className="card-icon">
-                  💰
-                </div>
-
+                <div className="card-icon">💳</div>
                 <div className="card-content">
-
-                  <h3>Total Due</h3>
-
+                  <h3>Due Ammount</h3>
                   <p className="big-amount">
-                    PKR{" "}
-                    {Number(
-                      student?.total_amount_due || 0
-                    ).toLocaleString()}
+                    PKR {Number(student?.total_amount_due || 0).toLocaleString()}
                   </p>
-
                   {nextDue && (
-                    <p className="next-due">
-                      Next Due:{" "}
-                      {getMonthName(nextDue.month)}{" "}
-                      {nextDue.year}
-                    </p>
+                    <p className="next-due">📅 Next due: {getMonthName(nextDue.month)} {nextDue.year}</p>
                   )}
-
                 </div>
               </div>
 
               {/* SUMMARY */}
               <div className="fee-card summary">
-
-                <div className="card-icon">
-                  📊
-                </div>
-
+                <div className="card-icon">📊</div>
                 <div className="card-content">
-
-                  <h3>Summary</h3>
-
+                  <h3>Payment Summary</h3>
                   <div className="summary-stats">
-
                     <div className="stat">
-                      <span className="stat-value">
-                        {fees.length}
-                      </span>
-
-                      <span className="stat-label">
-                        Invoices
-                      </span>
+                      <span className="stat-value">{fees.length}</span>
+                      <span className="stat-label">Total</span>
                     </div>
-
                     <div className="stat">
-                      <span className="stat-value paid">
-                        {
-                          fees.filter(
-                            (f) => f.status === "paid"
-                          ).length
-                        }
-                      </span>
-
-                      <span className="stat-label">
-                        Paid
-                      </span>
+                      <span className="stat-value paid">{fees.filter(f => f.status === "paid").length}</span>
+                      <span className="stat-label">Paid</span>
                     </div>
-
                     <div className="stat">
-                      <span className="stat-value unpaid">
-                        {
-                          fees.filter(
-                            (f) => f.status === "unpaid"
-                          ).length
-                        }
-                      </span>
-
-                      <span className="stat-label">
-                        Unpaid
-                      </span>
+                      <span className="stat-value unpaid">{fees.filter(f => f.status === "unpaid").length}</span>
+                      <span className="stat-label">Unpaid</span>
                     </div>
-
+                    <div className="stat">
+                      <span className="stat-value" style={{ color: "var(--portal-purple)" }}>{paidPct}%</span>
+                      <span className="stat-label">Cleared</span>
+                    </div>
                   </div>
-
                 </div>
               </div>
 
             </div>
 
-            {/* ================= MONTHLY DETAILS ================= */}
-
+            {/* ── MONTHLY DETAILS ── */}
             <div className="fee-table-box">
-
               <h3>📅 Monthly Fee Details</h3>
 
               <div className="months-accordion">

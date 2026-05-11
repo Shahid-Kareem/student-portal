@@ -89,7 +89,7 @@ const Login = () => {
 
         {message && <p className="message">{message}</p>}
 
-        <p className="login-divider">© 2025 Student Portal</p>
+        <p className="login-divider">© 2026 Student Portal</p>
       </div>
     </div>
   );
