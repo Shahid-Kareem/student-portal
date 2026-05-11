@@ -58,27 +58,38 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Login</h2>
 
-        <input
-          type="text"
-          placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <span className="login-icon">🎓</span>
+        <h2>Student Portal</h2>
+        <p className="login-subtitle">Sign in to your account</p>
 
-        <input
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className="login-input-group">
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+
+        <div className="login-input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
         <button onClick={handleLogin} disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? <><span className="login-spinner" /> Logging in...</> : "Login"}
         </button>
 
         {message && <p className="message">{message}</p>}
+
+        <p className="login-divider">© 2025 Student Portal</p>
       </div>
     </div>
   );
