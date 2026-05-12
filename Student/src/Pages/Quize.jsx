@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Topbar from '../Components/Topbar';
 import axios from "axios";
 import "./Quize.css";
-import { FaQuestionCircle, FaClock, FaUserGraduate, FaCheckCircle, FaPlayCircle, FaLock } from "react-icons/fa";
+import { FaQuestionCircle, FaClock, FaUserGraduate, FaCheckCircle, FaPlayCircle, FaLock, FaEye } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -127,7 +127,7 @@ const Quize = () => {
                         title={done ? "Already completed" : "Join this quiz"}
                         onClick={() => navigate(`/quizzes/${quiz.id}`)}
                       >
-                        {done ? <><FaLock /> Done</> : <><FaPlayCircle /> Join Quiz</>}
+                        {done ? <><FaLock /> Done</> : <><FaEye /> View Details</>}
                       </button>
                     </div>
 
