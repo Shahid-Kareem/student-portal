@@ -19,6 +19,7 @@ import Notices from "./Pages/Notices";
 import Teachers from "./Pages/Teachers";
 import Weather from "./Pages/Weather";
 import Login from "./Pages/Login";
+import Quizdetail from "./Pages/Quizdetail";
 
 function App() {
   const { token } = useAuth();
@@ -51,7 +52,9 @@ function App() {
             <Route path="/schedule"     element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
             <Route path="/subjects"     element={<ProtectedRoute><SubjectsGrades /></ProtectedRoute>} />
             <Route path="/assignments"  element={<ProtectedRoute><Assignments /></ProtectedRoute>} />
-            <Route path="/quize"  element={<ProtectedRoute><Quize /></ProtectedRoute>} />
+            <Route path="/quizzes"  element={<ProtectedRoute><Quize /></ProtectedRoute>} />
+            <Route path="/quizzes/:id"  element={<ProtectedRoute><Quizdetail /></ProtectedRoute>} />
+
             <Route path="/exams"        element={<ProtectedRoute><Exams /></ProtectedRoute>} />
             <Route path="/report"       element={<ProtectedRoute><Report /></ProtectedRoute>} />
             <Route path="/attendance"   element={<ProtectedRoute><Attendance /></ProtectedRoute>} />

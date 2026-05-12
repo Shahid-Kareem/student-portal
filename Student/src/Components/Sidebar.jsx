@@ -62,10 +62,10 @@ function Sidebar() {
       </div>
 
       <div
-        className={`menu-item ${isActive("/quize") ? "active" : ""}`}
-        onClick={() => navigate("/quize")}
+        className={`menu-item ${isActive("/quizzes") ? "active" : ""}`}
+        onClick={() => navigate("/quizzes")}
       >
-        <FontAwesomeIcon icon={faFilePen}/> Quize
+        <FontAwesomeIcon icon={faFilePen}/> Quizzes
       </div>
 
 

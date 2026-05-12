@@ -4,11 +4,13 @@ import axios from "axios";
 import "./Quize.css";
 import { FaQuestionCircle, FaClock, FaUserGraduate, FaCheckCircle, FaPlayCircle, FaLock } from "react-icons/fa";
 import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Quize = () => {
   const [quizzes, setQuizzes]   = useState([]);
   const [loading, setLoading]   = useState(true);
   const [filter, setFilter]     = useState("all");
+  const navigate= useNavigate();
 
   const API_BASE_URL = import.meta.env.VITE_API_URL;
   const { token } = useAuth();
@@ -123,6 +125,7 @@ const Quize = () => {
                         className={`join-btn ${done ? "join-btn-done" : "join-btn-active"}`}
                         disabled={done}
                         title={done ? "Already completed" : "Join this quiz"}
+                        onClick={() => navigate(`/quizzes/${quiz.id}`)}
                       >
                         {done ? <><FaLock /> Done</> : <><FaPlayCircle /> Join Quiz</>}
                       </button>
