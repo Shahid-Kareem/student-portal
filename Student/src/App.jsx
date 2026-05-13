@@ -20,6 +20,7 @@ import Teachers from "./Pages/Teachers";
 import Weather from "./Pages/Weather";
 import Login from "./Pages/Login";
 import Quizdetail from "./Pages/Quizdetail";
+import Syllabus from "./Pages/Syllabus";
 
 function App() {
   const { token } = useAuth();
@@ -51,6 +52,8 @@ function App() {
             <Route path="/profile"      element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/schedule"     element={<ProtectedRoute><Schedule /></ProtectedRoute>} />
             <Route path="/subjects"     element={<ProtectedRoute><SubjectsGrades /></ProtectedRoute>} />
+            <Route path="/syllabus"     element={<ProtectedRoute><Syllabus/></ProtectedRoute>} />
+
             <Route path="/assignments"  element={<ProtectedRoute><Assignments /></ProtectedRoute>} />
             <Route path="/quizzes"  element={<ProtectedRoute><Quize /></ProtectedRoute>} />
             <Route path="/quizzes/:id"  element={<ProtectedRoute><Quizdetail /></ProtectedRoute>} />

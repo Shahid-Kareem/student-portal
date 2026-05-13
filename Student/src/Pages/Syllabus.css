@@ -1,0 +1,140 @@
+.syllabus-page {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  margin-top: 40px;
+}
+
+.syllabus-header {
+  margin-bottom: 30px;
+}
+
+.syllabus-header h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1d0346;
+  font-size: 32px;
+}
+
+.syllabus-header p {
+  color: #666;
+  margin-top: 8px;
+}
+
+.syllabus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.syllabus-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.syllabus-card:hover {
+  transform: translateY(-5px);
+}
+
+.syllabus-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.syllabus-top h2 {
+  color: #1d0346;
+  font-size: 22px;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.status-badge.draft {
+  background: #ffe8b3;
+  color: #946200;
+}
+
+.status-badge.published {
+  background: #d4f8d4;
+  color: #0b7a0b;
+}
+
+.status-badge.completed {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.syllabus-card h3 {
+  margin-top: 12px;
+  color: #444;
+}
+
+.syllabus-description {
+  margin-top: 12px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.syllabus-info {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f4f4;
+  padding: 12px;
+  border-radius: 12px;
+  color: #333;
+  font-size: 14px;
+}
+
+.progress-section {
+  margin-top: 24px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #1d0346;
+  border-radius: 20px;
+}
+
+.progress-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.syllabus-footer {
+  margin-top: 20px;
+  color: #777;
+  font-size: 13px;
+}
+
+.syllabus-loading {
+  padding: 40px;
+  text-align: center;
+  font-size: 20px;
+}

@@ -9,6 +9,7 @@ import { faGraduationCap } from "@fortawesome/free-solid-svg-icons/faGraduationC
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons/faUserCheck";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 import { FaBrain } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
 
 
 
@@ -59,7 +60,7 @@ function Sidebar() {
         className={`menu-item ${isActive("/syllabus") ? "active" : ""}`}
         onClick={() => navigate("/syllabus")}
       >
-        <FontAwesomeIcon icon={faBookOpen}/> Syllabus
+        <FontAwesomeIcon icon={faBook}/> Syllabus
       </div>
 
       <div
