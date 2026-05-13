@@ -372,3 +372,20 @@
   .qd-title     { font-size: 1.2rem; }
   .qd-action-bar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── Joined (waiting) button ── */
+.btn-joined {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.75);
+  cursor: not-allowed;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ── Join feedback message ── */
+.qd-join-msg {
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: right;
+  color: rgba(255,255,255,0.85);
+}

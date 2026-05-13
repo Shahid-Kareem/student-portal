@@ -13,8 +13,11 @@ const Quizdetail = () => {
   const { token }    = useAuth();
   const navigate     = useNavigate();
 
-  const [quiz, setQuiz]       = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [quiz, setQuiz]         = useState(null);
+  const [loading, setLoading]   = useState(true);
+  const [joined, setJoined]     = useState(false);
+  const [joining, setJoining]   = useState(false);
+  const [joinMsg, setJoinMsg]   = useState("");
 
   const API_BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -29,10 +32,32 @@ const Quizdetail = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setQuiz(res.data);
+      if (res.data.is_joined) setJoined(true);
     } catch (err) {
       console.log("ERROR:", err.response?.data || err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleJoinQuiz = async () => {
+    setJoining(true);
+    setJoinMsg("");
+    try {
+      await axios.post(
+        `${API_BASE_URL}/api/subjects/quizzes/${id}/join/`,
+        {
+          id: quiz.id,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setJoined(true);
+      setJoinMsg("✅ You have Successfully Joined the Quiz!");
+    } catch (err) {
+      const msg = err.response?.data?.detail || err.response?.data?.error || "Failed to Join Quiz.";
+      setJoinMsg(`❌ ${msg}`);
+    } finally {
+      setJoining(false);
     }
   };
 
@@ -52,7 +77,7 @@ const Quizdetail = () => {
     return (
       <>
         <Topbar page="quiz" pageTitles={{ quiz: "Quizzes" }} />
-        <div className="qd-loading">Quiz not found.</div>
+        <div className="qd-loading">Quiz not Found.</div>
       </>
     );
   }
@@ -104,16 +129,41 @@ const Quizdetail = () => {
 
           {/* Start button in hero */}
           <div className="qd-hero-action">
-            <button
-              className={`qd-start-btn ${done ? "btn-done" : "btn-active"}`}
-              disabled={done}
-            >
-              {done
-                ? <><FaCheckCircle /> Already Completed</>
-                : <><FaPlayCircle /> Join Quiz</>}
-            </button>
+            {done ? (
+              <button className="qd-start-btn btn-done" disabled>
+                <FaCheckCircle /> Already Completed
+              </button>
+            ) : joined ? (
+              quiz.is_scheduled ? (
+                <button
+                  className="qd-start-btn btn-active"
+                  onClick={() => navigate(`/quizzes/${id}/start`)}
+                >
+                  <FaPlayCircle /> Start Quiz
+                </button>
+              ) : (
+                <button className="qd-start-btn btn-joined" disabled>
+                  <FaCheckCircle /> Joined — Waiting for Schedule
+                </button>
+              )
+            ) : (
+              <button
+                className="qd-start-btn btn-active"
+                onClick={handleJoinQuiz}
+                disabled={joining}
+              >
+                <FaPlayCircle /> {joining ? "Joining…" : "Join Quiz"}
+              </button>
+            )}
+            {joinMsg && <p className="qd-join-msg">{joinMsg}</p>}
             <p className="qd-start-hint">
-              {done ? "You have already taken this quiz." : `${quiz.time_limit} min · ${quiz.questions_count} questions`}
+              {done
+                ? "You have already taken this quiz."
+                : joined
+                ? quiz.is_scheduled
+                  ? "Quiz is live — good luck!"
+                  : "You'll be notified when the teacher schedules the quiz."
+                : `${quiz.time_limit} min · ${quiz.questions_count} questions`}
             </p>
           </div>
         </div>

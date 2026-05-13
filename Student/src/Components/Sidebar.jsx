@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUser, faBook, faFileAlt, faClipboard, faChartBar, faCalendarDays, faClipboardList, faFilePen, faChartLine, faSchool, faMoneyBill1Wave, faCreditCard, faRunning, faBell, faBullhorn, faHeadset, faChalkboardUser, faCog, faCloudSun } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faBook, faFileAlt, faClipboard, faChartBar, faCalendarDays, faClipboardList, faFilePen, faChartLine, faSchool, faMoneyBill1Wave, faCreditCard, faRunning, faBell, faBullhorn, faHeadset, faChalkboardUser, faCog, faCloudSun, faBrain } from "@fortawesome/free-solid-svg-icons";
 import "./Sidebar.css";
 import { faTableColumns } from "@fortawesome/free-solid-svg-icons/faTableColumns";
 import { faHouse } from "@fortawesome/free-solid-svg-icons/faHouse";
@@ -8,6 +8,7 @@ import { faBookOpen } from "@fortawesome/free-solid-svg-icons/faBookOpen";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons/faGraduationCap";
 import { faUserCheck } from "@fortawesome/free-solid-svg-icons/faUserCheck";
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
+import { FaBrain } from "react-icons/fa";
 
 
 
@@ -55,6 +56,13 @@ function Sidebar() {
       </div>
 
       <div
+        className={`menu-item ${isActive("/syllabus") ? "active" : ""}`}
+        onClick={() => navigate("/syllabus")}
+      >
+        <FontAwesomeIcon icon={faBookOpen}/> Syllabus
+      </div>
+
+      <div
         className={`menu-item ${isActive("/assignments") ? "active" : ""}`}
         onClick={() => navigate("/assignments")}
       >
@@ -65,7 +73,7 @@ function Sidebar() {
         className={`menu-item ${isActive("/quizzes") ? "active" : ""}`}
         onClick={() => navigate("/quizzes")}
       >
-        <FontAwesomeIcon icon={faFilePen}/> Quizzes
+        <FontAwesomeIcon icon={faBrain}/> Quizzes
       </div>
 
 
