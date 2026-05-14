@@ -57,8 +57,8 @@
 }
 
 .qd-spinner {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   border: 3px solid var(--qd-purple-light);
   border-top-color: var(--qd-purple);
   border-radius: 50%;

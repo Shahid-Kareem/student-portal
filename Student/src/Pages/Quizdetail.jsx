@@ -134,7 +134,7 @@ const Quizdetail = () => {
                 <FaCheckCircle /> Already Completed
               </button>
             ) : joined ? (
-              quiz.is_scheduled ? (
+              quiz.is_published ? (
                 <button
                   className="qd-start-btn btn-active"
                   onClick={() => navigate(`/quizzes/${id}/start`)}
@@ -143,7 +143,7 @@ const Quizdetail = () => {
                 </button>
               ) : (
                 <button className="qd-start-btn btn-joined" disabled>
-                  <FaCheckCircle /> Joined — Waiting for Schedule
+                  <FaCheckCircle /> Joined — Waiting for Teacher to Publish
                 </button>
               )
             ) : (
@@ -160,9 +160,9 @@ const Quizdetail = () => {
               {done
                 ? "You have already taken this quiz."
                 : joined
-                ? quiz.is_scheduled
+                ? quiz.is_published
                   ? "Quiz is live — good luck!"
-                  : "You'll be notified when the teacher schedules the quiz."
+                  : "You'll be notified when the teacher publishes the quiz."
                 : `${quiz.time_limit} min · ${quiz.questions_count} questions`}
             </p>
           </div>
